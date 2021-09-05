@@ -13,7 +13,8 @@ AProceduralRoom::AProceduralRoom() :
 	BottomRight(1000.0f,1000.0f,0.0f),
 	GridHeight(1.0f),
 	RoomLength(1000.0f),
-	RoomWidth(1000.0f)
+	RoomWidth(1000.0f),
+	Radius(25.0f)
 
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
@@ -38,6 +39,8 @@ void AProceduralRoom::BeginPlay()
 	SpawnItem(ChairClass);*/
 
 	CreateGrid();
+
+	PlacePointsOnGrid();
 	
 }
 
@@ -69,5 +72,43 @@ void AProceduralRoom::CreateGrid()
 		FVector End = Start + FVector(0.0f, RoomLength, GridHeight);
 
 		DrawDebugLine(GetWorld(), Start, End, FColor::Green, true);
+	}
+
+	for (int32 i = 0 ; i < GridSizeY +  1;i++)
+	{
+		FVector Start = TopLeft + FVector(0.0f, i * SquareWidth, GridHeight);
+		FVector End = Start + FVector(RoomWidth,0.0f,GridHeight);
+
+		DrawDebugLine(GetWorld(), Start, End, FColor::Green, true);
+	}
+}
+
+FVector AProceduralRoom::GetRandomPointInSquare(const FVector& UpperLeft, const FVector& LowerRight)
+{
+	float RandomX = FMath::FRandRange(UpperLeft.X,LowerRight.X);
+	float RandomY = FMath::FRandRange(UpperLeft.Y, LowerRight.Y);
+
+	return FVector(RandomX,RandomY,1.0f);
+}
+
+void AProceduralRoom::PlacePointsOnGrid()
+{
+	for (int32 i = 0;i < GridSizeX;i++)
+	{
+		for (int32 j = 0; j < GridSizeY; j++)
+		{
+			FVector UpperLeft{ i * SquareWidth + Radius,j * SquareWidth + Radius,GridHeight };
+			FVector LowerRight{ i * SquareWidth + SquareWidth - Radius,j * SquareWidth + SquareWidth - Radius,GridHeight };
+
+			FVector RandomPointInTheSquare{ GetRandomPointInSquare(UpperLeft,LowerRight) };
+
+			DrawDebugPoint(GetWorld(),RandomPointInTheSquare,10.0f,FColor::Red,true);
+
+			DrawDebugCircle(GetWorld(), RandomPointInTheSquare, Radius, 48.0f, FColor::Blue, true,-1.0f,0,2.5f,FVector(0.0f,1.0f,0.0f),FVector(1.0f,0.0f,0.0f),true);
+
+			float RandomYaw = FMath::FRandRange(0.0, 360.0f);
+			GetWorld()->SpawnActor<AActor>(ChairClass, RandomPointInTheSquare, FRotator(0.0f, RandomYaw, 0.0f));
+
+		}
 	}
 }

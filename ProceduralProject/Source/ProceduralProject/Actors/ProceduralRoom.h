@@ -41,6 +41,10 @@ private:
 
 
 	void CreateGrid();
+
+	FVector GetRandomPointInSquare(const FVector& UpperLeft, const FVector& LowerRight);
+
+	void PlacePointsOnGrid();
 	
 	float SquareWidth;
 	float GridHeight;
@@ -52,6 +56,9 @@ private:
 
 	FVector TopLeft;
 	FVector BottomRight;
+
+	//Radius to draw with the Circle Draw Debug
+	float Radius = 0.0f;
 
 
 };
