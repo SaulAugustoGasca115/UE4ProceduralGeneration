@@ -59,7 +59,8 @@ DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(AProceduralRoom); \
 
 
 #define ProceduralProject_Source_ProceduralProject_Actors_ProceduralRoom_h_13_PRIVATE_PROPERTY_OFFSET \
-	FORCEINLINE static uint32 __PPO__Floor() { return STRUCT_OFFSET(AProceduralRoom, Floor); }
+	FORCEINLINE static uint32 __PPO__Floor() { return STRUCT_OFFSET(AProceduralRoom, Floor); } \
+	FORCEINLINE static uint32 __PPO__ChairClass() { return STRUCT_OFFSET(AProceduralRoom, ChairClass); }
 
 
 #define ProceduralProject_Source_ProceduralProject_Actors_ProceduralRoom_h_10_PROLOG

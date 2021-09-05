@@ -31,4 +31,27 @@ private:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Room, meta = (AllowPrivateAccess=true))
 			UStaticMeshComponent* Floor;
 
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Room, meta = (AllowPrivateAccess = true))
+		TSubclassOf<AActor> ChairClass;
+
+
+	//SpawnActorwithin this class
+	void SpawnItem(UClass* ItemToSpawn);
+
+
+	void CreateGrid();
+	
+	float SquareWidth;
+	float GridHeight;
+	float RoomLength;
+	float RoomWidth;
+
+	int32 GridSizeX;
+	int32 GridSizeY;
+
+	FVector TopLeft;
+	FVector BottomRight;
+
+
 };
