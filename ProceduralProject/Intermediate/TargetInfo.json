@@ -1,0 +1,14 @@
+{
+	"Targets": [
+		{
+			"Name": "ProceduralProject",
+			"Path": "D:\\UnrealProjects\\OwnProjects\\UE4ProceduralGeneration\\ProceduralProject\\Source\\ProceduralProject.Target.cs",
+			"Type": "Game"
+		},
+		{
+			"Name": "ProceduralProjectEditor",
+			"Path": "D:\\UnrealProjects\\OwnProjects\\UE4ProceduralGeneration\\ProceduralProject\\Source\\ProceduralProjectEditor.Target.cs",
+			"Type": "Editor"
+		}
+	]
+}

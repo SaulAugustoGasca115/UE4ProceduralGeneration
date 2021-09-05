@@ -1,0 +1,8 @@
+{
+	"SourceFiles": [
+		"D:\\UnrealProjects\\OwnProjects\\UE4ProceduralGeneration\\ProceduralProject\\Source\\ProceduralProject\\ProceduralProject.Build.cs",
+		"D:\\UnrealProjects\\OwnProjects\\UE4ProceduralGeneration\\ProceduralProject\\Source\\ProceduralProject.Target.cs",
+		"D:\\UnrealProjects\\OwnProjects\\UE4ProceduralGeneration\\ProceduralProject\\Source\\ProceduralProjectEditor.Target.cs"
+	],
+	"EngineVersion": "4.26.2"
+}
