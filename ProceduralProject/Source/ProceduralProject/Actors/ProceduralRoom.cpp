@@ -3,6 +3,7 @@
 
 #include "ProceduralRoom.h"
 #include "DrawDebugHelpers.h"
+#include "../FloorNode.h"
 
 // Sets default values
 AProceduralRoom::AProceduralRoom() : 
@@ -38,10 +39,25 @@ void AProceduralRoom::BeginPlay()
 	SpawnItem(ChairClass);
 	SpawnItem(ChairClass);*/
 
+
+	//SpawnItem(ChairClass);
+
 	CreateGrid();
 
 	PlacePointsOnGrid();
+
+	//old method
+	/*FloorNode* Node = new FloorNode();
 	
+	delete Node; */
+
+
+	//to p[oint to one pointer
+	//TUniquePtr<FloorNode> UniqueNodePtr(new FloorNode());
+
+	//to pint to multiple pointers
+	TSharedPtr<FloorNode> SharedNodePtr(new FloorNode());
+
 }
 
 // Called every frame
@@ -71,7 +87,15 @@ void AProceduralRoom::CreateGrid()
 		FVector Start = TopLeft + FVector(i * SquareWidth,0.0f,GridHeight);
 		FVector End = Start + FVector(0.0f, RoomLength, GridHeight);
 
-		DrawDebugLine(GetWorld(), Start, End, FColor::Green, true);
+		if (bActivateLineDebug)
+		{
+			DrawDebugLine(GetWorld(), Start, End, FColor::Green, true);
+		}
+		else {
+			//DrawDebugLine(GetWorld(), Start, End, FColor::Green, false);
+			return;
+		}
+		
 	}
 
 	for (int32 i = 0 ; i < GridSizeY +  1;i++)
@@ -79,7 +103,16 @@ void AProceduralRoom::CreateGrid()
 		FVector Start = TopLeft + FVector(0.0f, i * SquareWidth, GridHeight);
 		FVector End = Start + FVector(RoomWidth,0.0f,GridHeight);
 
-		DrawDebugLine(GetWorld(), Start, End, FColor::Green, true);
+		if (bActivateLineDebug)
+		{
+			DrawDebugLine(GetWorld(), Start, End, FColor::Green, true);
+		}
+		else {
+			//DrawDebugLine(GetWorld(), Start, End, FColor::Green, false);
+			return;
+		}
+
+		
 	}
 }
 

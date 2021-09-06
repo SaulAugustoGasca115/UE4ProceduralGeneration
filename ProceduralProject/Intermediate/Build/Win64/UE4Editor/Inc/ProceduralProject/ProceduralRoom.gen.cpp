@@ -35,6 +35,11 @@ void EmptyLinkFunctionForGeneratedCodeProceduralRoom() {}
 		static const UE4CodeGen_Private::FMetaDataPairParam Class_MetaDataParams[];
 #endif
 #if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_bActivateLineDebug_MetaData[];
+#endif
+		static void NewProp_bActivateLineDebug_SetBit(void* Obj);
+		static const UE4CodeGen_Private::FBoolPropertyParams NewProp_bActivateLineDebug;
+#if WITH_METADATA
 		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_Floor_MetaData[];
 #endif
 		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_Floor;
@@ -57,6 +62,17 @@ void EmptyLinkFunctionForGeneratedCodeProceduralRoom() {}
 	};
 #endif
 #if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AProceduralRoom_Statics::NewProp_bActivateLineDebug_MetaData[] = {
+		{ "Category", "Debug" },
+		{ "ModuleRelativePath", "Actors/ProceduralRoom.h" },
+	};
+#endif
+	void Z_Construct_UClass_AProceduralRoom_Statics::NewProp_bActivateLineDebug_SetBit(void* Obj)
+	{
+		((AProceduralRoom*)Obj)->bActivateLineDebug = 1;
+	}
+	const UE4CodeGen_Private::FBoolPropertyParams Z_Construct_UClass_AProceduralRoom_Statics::NewProp_bActivateLineDebug = { "bActivateLineDebug", nullptr, (EPropertyFlags)0x0010000000000005, UE4CodeGen_Private::EPropertyGenFlags::Bool | UE4CodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, sizeof(bool), sizeof(AProceduralRoom), &Z_Construct_UClass_AProceduralRoom_Statics::NewProp_bActivateLineDebug_SetBit, METADATA_PARAMS(Z_Construct_UClass_AProceduralRoom_Statics::NewProp_bActivateLineDebug_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AProceduralRoom_Statics::NewProp_bActivateLineDebug_MetaData)) };
+#if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AProceduralRoom_Statics::NewProp_Floor_MetaData[] = {
 		{ "AllowPrivateAccess", "TRUE" },
 		{ "Category", "Room" },
@@ -74,6 +90,7 @@ void EmptyLinkFunctionForGeneratedCodeProceduralRoom() {}
 #endif
 	const UE4CodeGen_Private::FClassPropertyParams Z_Construct_UClass_AProceduralRoom_Statics::NewProp_ChairClass = { "ChairClass", nullptr, (EPropertyFlags)0x0044000000000005, UE4CodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AProceduralRoom, ChairClass), Z_Construct_UClass_AActor_NoRegister, Z_Construct_UClass_UClass, METADATA_PARAMS(Z_Construct_UClass_AProceduralRoom_Statics::NewProp_ChairClass_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AProceduralRoom_Statics::NewProp_ChairClass_MetaData)) };
 	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AProceduralRoom_Statics::PropPointers[] = {
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AProceduralRoom_Statics::NewProp_bActivateLineDebug,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AProceduralRoom_Statics::NewProp_Floor,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AProceduralRoom_Statics::NewProp_ChairClass,
 	};
@@ -104,7 +121,7 @@ void EmptyLinkFunctionForGeneratedCodeProceduralRoom() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(AProceduralRoom, 3992297664);
+	IMPLEMENT_CLASS(AProceduralRoom, 2155954805);
 	template<> PROCEDURALPROJECT_API UClass* StaticClass<AProceduralRoom>()
 	{
 		return AProceduralRoom::StaticClass();

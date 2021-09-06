@@ -16,7 +16,8 @@ public:
 	// Sets default values for this actor's properties
 	AProceduralRoom();
 
-	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Debug)
+		bool bActivateLineDebug = false;
 
 protected:
 	// Called when the game starts or when spawned
