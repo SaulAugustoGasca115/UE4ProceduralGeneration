@@ -3,7 +3,7 @@
   <ItemGroup>
     <None Include="..\..\ProceduralProject.uproject" />
     <Filter Include="Source">
-      <UniqueIdentifier>{6377292E-66FD-4B48-8611-F9DDDD9FC877}</UniqueIdentifier>
+      <UniqueIdentifier>{2B7B02A4-6FC5-4B26-B30E-B3AD51CA4BFC}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Source\ProceduralProject.Target.cs">
       <Filter>Source</Filter>
@@ -12,7 +12,7 @@
       <Filter>Source</Filter>
     </None>
     <Filter Include="Config">
-      <UniqueIdentifier>{DF95FD2E-3264-4A15-85CD-7C219E9F7841}</UniqueIdentifier>
+      <UniqueIdentifier>{052D8E80-C304-41B6-933C-E726699FD680}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Config\DefaultEditor.ini">
       <Filter>Config</Filter>
@@ -30,7 +30,7 @@
       <Filter>Config</Filter>
     </None>
     <Filter Include="Source\ProceduralProject">
-      <UniqueIdentifier>{9CFF6214-0DB9-40FB-9797-9FCE04ADF7D7}</UniqueIdentifier>
+      <UniqueIdentifier>{4ECE4C2B-1DF6-4DAC-A5B4-5BCBDF793A4C}</UniqueIdentifier>
     </Filter>
     <ClCompile Include="..\..\Source\ProceduralProject\FloorNode.cpp">
       <Filter>Source\ProceduralProject</Filter>
@@ -66,7 +66,7 @@
       <Filter>Source\ProceduralProject</Filter>
     </ClInclude>
     <Filter Include="Source\ProceduralProject\Actors">
-      <UniqueIdentifier>{EF518118-092A-456E-A02A-D0288947FB22}</UniqueIdentifier>
+      <UniqueIdentifier>{106EEFEE-347E-4622-83CC-9F7861E3FADE}</UniqueIdentifier>
     </Filter>
     <ClCompile Include="..\..\Source\ProceduralProject\Actors\ChairActor.cpp">
       <Filter>Source\ProceduralProject\Actors</Filter>
@@ -80,14 +80,47 @@
     <ClInclude Include="..\..\Source\ProceduralProject\Actors\ProceduralRoom.h">
       <Filter>Source\ProceduralProject\Actors</Filter>
     </ClInclude>
+    <Filter Include="Source\ProceduralProject\Actors\Components">
+      <UniqueIdentifier>{4CABCA9E-23AD-4818-BC17-A6C1D773DEA1}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\ProceduralProject\Actors\Components\ReverseTimeComponent.cpp">
+      <Filter>Source\ProceduralProject\Actors\Components</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\ProceduralProject\Actors\Components\ReverseTimeComponent.h">
+      <Filter>Source\ProceduralProject\Actors\Components</Filter>
+    </ClInclude>
+    <Filter Include="Source\ProceduralProject\AI">
+      <UniqueIdentifier>{9F76224C-7AF6-4847-B48F-11EE837C59FD}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\ProceduralProject\AI\EnemyController.cpp">
+      <Filter>Source\ProceduralProject\AI</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\ProceduralProject\AI\EnemyController.h">
+      <Filter>Source\ProceduralProject\AI</Filter>
+    </ClInclude>
     <Filter Include="Source\ProceduralProject\Characters">
-      <UniqueIdentifier>{C01851FB-E03F-434C-9EBE-248034165A09}</UniqueIdentifier>
+      <UniqueIdentifier>{E9DE42B6-D2B4-47F8-B5B3-1C252E98695D}</UniqueIdentifier>
     </Filter>
     <ClCompile Include="..\..\Source\ProceduralProject\Characters\EnemyCharacter.cpp">
       <Filter>Source\ProceduralProject\Characters</Filter>
     </ClCompile>
     <ClInclude Include="..\..\Source\ProceduralProject\Characters\EnemyCharacter.h">
       <Filter>Source\ProceduralProject\Characters</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\ProceduralProject\Characters\EnemySoulsLike.cpp">
+      <Filter>Source\ProceduralProject\Characters</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\ProceduralProject\Characters\EnemySoulsLike.h">
+      <Filter>Source\ProceduralProject\Characters</Filter>
+    </ClInclude>
+    <Filter Include="Source\ProceduralProject\ReverseTime">
+      <UniqueIdentifier>{A2A5F926-2310-4B12-9B33-0E71C41B0CDF}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\ProceduralProject\ReverseTime\FramePackage.cpp">
+      <Filter>Source\ProceduralProject\ReverseTime</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\ProceduralProject\ReverseTime\FramePackage.h">
+      <Filter>Source\ProceduralProject\ReverseTime</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

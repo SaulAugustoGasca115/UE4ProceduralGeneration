@@ -2,6 +2,7 @@
 
 
 #include "EnemyCharacter.h"
+#include "../AI/EnemyController.h"
 
 // Sets default values
 AEnemyCharacter::AEnemyCharacter()
@@ -32,3 +33,14 @@ void AEnemyCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComp
 
 }
 
+void AEnemyCharacter::SetMyTarget()
+{
+	AiController = Cast<AEnemyController>(GetController());
+
+	if (AiController)
+	{
+		AiController->GetBlackboardComponent();
+
+		
+	}
+}
