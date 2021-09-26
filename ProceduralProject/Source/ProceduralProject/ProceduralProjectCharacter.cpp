@@ -74,6 +74,10 @@ void AProceduralProjectCharacter::SetupPlayerInputComponent(class UInputComponen
 
 	// VR headset functionality
 	PlayerInputComponent->BindAction("ResetVR", IE_Pressed, this, &AProceduralProjectCharacter::OnResetVR);
+
+	//Reverse Time
+	PlayerInputComponent->BindAction("ReversingTime", EInputEvent::IE_Pressed, this, &AProceduralProjectCharacter::StartReversingTime);
+	PlayerInputComponent->BindAction("ReversingTime", EInputEvent::IE_Released, this, &AProceduralProjectCharacter::StopReversingTime);
 }
 
 
@@ -97,6 +101,8 @@ void AProceduralProjectCharacter::TouchStopped(ETouchIndex::Type FingerIndex, FV
 {
 		StopJumping();
 }
+
+
 
 void AProceduralProjectCharacter::TurnAtRate(float Rate)
 {
@@ -138,3 +144,19 @@ void AProceduralProjectCharacter::MoveRight(float Value)
 		AddMovementInput(Direction, Value);
 	}
 }
+
+#pragma region Reverse Time Section
+
+void AProceduralProjectCharacter::StartReversingTime()
+{
+	ReverseTimeDelegate.Broadcast(true);
+}
+
+void AProceduralProjectCharacter::StopReversingTime()
+{
+	ReverseTimeDelegate.Broadcast(false);
+}
+
+#pragma endregion
+
+

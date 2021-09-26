@@ -2,6 +2,10 @@
 
 
 #include "ReverseTimeComponent.h"
+#include "Kismet/GameplayStatics.h"
+#include "../../ProceduralProjectCharacter.h"
+#include "Components/StaticMeshComponent.h"
+#include "../../ReverseTime/FramePackage.h"
 
 // Sets default values for this component's properties
 UReverseTimeComponent::UReverseTimeComponent()
@@ -11,6 +15,8 @@ UReverseTimeComponent::UReverseTimeComponent()
 	PrimaryComponentTick.bCanEverTick = true;
 
 	// ...
+
+	//bReversingTime = false;
 }
 
 
@@ -20,9 +26,16 @@ void UReverseTimeComponent::BeginPlay()
 	Super::BeginPlay();
 
 	// ...
+
+	Character = Cast<AProceduralProjectCharacter>(UGameplayStatics::GetPlayerPawn(GetWorld(),0));
+
+	if (Character)
+	{
+		//Character->ReverseTimeDele
+		Character->ReverseTimeDelegate.AddDynamic(this,&UReverseTimeComponent::SetReversingTime);
+	}
 	
 }
-
 
 // Called every frame
 void UReverseTimeComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
@@ -30,5 +43,94 @@ void UReverseTimeComponent::TickComponent(float DeltaTime, ELevelTick TickType, 
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
 	// ...
+	if (!bReversingTime) //storing data not right click
+	{
+		AActor* Owner = GetOwner();
+		TArray<UActorComponent*> Components  = Owner->GetComponentsByClass(UStaticMeshComponent::StaticClass());
+
+		if (Components.Num() > 0)
+		{
+			UStaticMeshComponent* SMC = Cast<UStaticMeshComponent>(Components[0]);
+
+			if (SMC)
+			{
+				FFramePackage Package(Owner->GetActorLocation(), Owner->GetActorRotation(), SMC->GetPhysicsLinearVelocity(), SMC->GetPhysicsAngularVelocity(), DeltaTime);
+
+				if (RecordedTime < 15.0f)
+				{
+					StoredFrames.AddTail(Package);
+					RecordedTime += Package.DeltaTime;
+					bOutOfData = false;
+				}
+				else {
+
+					while (RunningTime >= 15.0f)
+					{
+						auto Head = StoredFrames.GetHead();
+						float HeadDeltaTime = Head->GetValue().DeltaTime;
+						StoredFrames.RemoveNode(Head);
+						RecordedTime -= HeadDeltaTime;
+					}
+
+					StoredFrames.AddTail(Package);
+					RecordedTime += Package.DeltaTime;
+					bOutOfData = false;
+				}
+			}
+		}
+
+	}
+	else if(!bOutOfData) //reversing time with right click
+	{
+		auto Tail = StoredFrames.GetTail();
+
+		if (Tail)
+		{
+			AActor* Owner = GetOwner();
+
+			Owner->SetActorLocation(Tail->GetValue().Location);
+			Owner->SetActorRotation(Tail->GetValue().Rotation);
+
+			TArray<UActorComponent*> Components = Owner->GetComponentsByClass(UStaticMeshComponent::StaticClass());
+
+			if (Components.Num() > 0)
+			{
+				UStaticMeshComponent* SMC = Cast<UStaticMeshComponent>(Components[0]);
+
+				if (SMC)
+				{
+					SMC->SetPhysicsLinearVelocity(Tail->GetValue().LinearVelocity);
+					SMC->SetPhysicsAngularVelocity(Tail->GetValue().AngularVelocity);
+				}
+			}
+
+			auto Head = StoredFrames.GetHead();
+			if (Head == Tail)
+			{
+				RecordedTime = 0.0f;
+				bOutOfData = true;
+			}
+			else 
+			{
+				RecordedTime -= Tail->GetValue().DeltaTime;
+			}
+
+			
+			StoredFrames.RemoveNode(Tail);
+		}
+
+	}
 }
 
+void UReverseTimeComponent::SetReversingTime(bool InReversingTime)
+{
+	bReversingTime = InReversingTime;
+
+	if (bReversingTime)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Reversing Time"));
+	}
+	else {
+		UE_LOG(LogTemp, Warning, TEXT("Stop Reversing Time"));
+	}
+}

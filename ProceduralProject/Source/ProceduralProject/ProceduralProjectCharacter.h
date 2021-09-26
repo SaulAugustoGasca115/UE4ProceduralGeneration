@@ -6,6 +6,10 @@
 #include "GameFramework/Character.h"
 #include "ProceduralProjectCharacter.generated.h"
 
+
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FReverseTimeDelegate,bool, bReverseTime);
+
+
 UCLASS(config=Game)
 class AProceduralProjectCharacter : public ACharacter
 {
@@ -58,6 +62,13 @@ protected:
 	/** Handler for when a touch input stops. */
 	void TouchStopped(ETouchIndex::Type FingerIndex, FVector Location);
 
+
+	//Reversing Time Functions
+	void StartReversingTime();
+	void StopReversingTime();
+
+	FReverseTimeDelegate ReverseTimeDelegate;
+
 protected:
 	// APawn interface
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
@@ -68,5 +79,10 @@ public:
 	FORCEINLINE class USpringArmComponent* GetCameraBoom() const { return CameraBoom; }
 	/** Returns FollowCamera subobject **/
 	FORCEINLINE class UCameraComponent* GetFollowCamera() const { return FollowCamera; }
+
+
+private:
+
+	friend class UReverseTimeComponent;
 };
 

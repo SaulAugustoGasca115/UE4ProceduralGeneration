@@ -27,9 +27,24 @@ struct FFramePackage
 	float DeltaTime;
 };
 
+
+FFramePackage::FFramePackage()
+{
+
+}
+
+FFramePackage::FFramePackage(FVector InLocation, FRotator InRotation, FVector InLinearVelocity, FVector InAngularVelocity, float DeltaTime) :
+	Location(InLocation), Rotation(InRotation), LinearVelocity(InLinearVelocity), AngularVelocity(InAngularVelocity), DeltaTime(DeltaTime)
+{
+
+}
+
 class PROCEDURALPROJECT_API FramePackage
 {
 public:
 	FramePackage();
 	~FramePackage();
+
+	
+
 };
